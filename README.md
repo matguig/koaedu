@@ -21,7 +21,17 @@ mascotte compagnon qui guide et encourage.
 ## Stack
 
 React 19 + TypeScript · Vite · React Router · Zustand (état + persistance
-`localStorage`) · Framer Motion (animations) · CSS Modules · Vitest.
+`localStorage`) · Framer Motion (animations 2D) · **React Three Fiber / Three.js
+(3D)** · CSS Modules · Vitest.
+
+## Mascotte 3D
+
+Zubi est affiché en 3D sur l'accueil (`src/components/Zubi3D.tsx`), modèle chargé
+depuis `public/models/zubi.glb`. Le modèle actuel est un « white mesh »
+(géométrie seule) auquel on applique un matériau turquoise ; le composant détecte
+automatiquement une texture, donc **déposer un `.glb` texturé au même emplacement
+affichera ses couleurs sans changer le code**. Le chargement de Three.js est
+`lazy` (chunk séparé) pour ne pas alourdir les écrans sans 3D.
 
 ## Démarrage
 
@@ -59,3 +69,10 @@ Types d'exercices disponibles : `qcm`, `saisie`, `vraiFaux`, `texteATrous`.
 - [ ] **Phase 2** — Parcours par matière, plusieurs leçons, système d'étoiles complet.
 - [ ] **Phase 3** — Mini-jeux récompense.
 - [ ] **Phase 4** — Contenu CE2 étoffé, personnalisation de la mascotte, sons.
+
+### Bascule 3D (en cours)
+
+- [x] Socle React Three Fiber : Zubi 3D animé sur l'accueil, chargement `.glb`.
+- [ ] Modèle **texturé** (couleurs du visage) — le mesh gratuit actuel est nu.
+- [ ] Modèle **riggé** + animations (saut, réflexion, célébration).
+- [ ] Généraliser la 3D sur les autres écrans (retours d'exercices, bilan).
