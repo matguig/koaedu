@@ -1,0 +1,106 @@
+.zone {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.barre {
+  position: relative;
+  height: 16px;
+  background: #e4e9f5;
+  border-radius: 999px;
+  margin-bottom: 26px;
+  overflow: hidden;
+}
+
+.progression {
+  height: 100%;
+  background: linear-gradient(90deg, var(--c-primaire), #8a97ff);
+  border-radius: 999px;
+  transition: width 0.35s ease;
+}
+
+.compteur {
+  position: absolute;
+  right: 10px;
+  top: -26px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--c-texte-doux);
+}
+
+.contenu {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.mascotte {
+  flex: 0 0 auto;
+  position: sticky;
+  top: 20px;
+}
+
+.carte {
+  flex: 1;
+  background: var(--c-fond-carte);
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  padding: 28px;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+}
+
+.consigne {
+  margin: 0 0 18px;
+  font-weight: 700;
+  color: var(--c-texte-doux);
+  font-size: 1.05rem;
+}
+
+.feedback {
+  margin-top: 18px;
+  padding: 14px 18px;
+  border-radius: var(--rayon-s);
+  font-size: 1rem;
+}
+
+.feedback p {
+  margin: 6px 0 0;
+  font-weight: 500;
+}
+
+.feedbackBon {
+  background: #e5f8ee;
+  color: #1a7d4b;
+}
+
+.feedbackMauvais {
+  background: #fff2e8;
+  color: #b5541f;
+}
+
+.actions {
+  margin-top: auto;
+  padding-top: 22px;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 640px) {
+  .contenu {
+    flex-direction: column;
+    align-items: center;
+  }
+  .mascotte {
+    position: static;
+  }
+  .carte {
+    width: 100%;
+    padding: 20px;
+  }
+  .choix {
+    grid-template-columns: 1fr;
+  }
+}

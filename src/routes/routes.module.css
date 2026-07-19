@@ -1,0 +1,315 @@
+.centre {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.titrePage {
+  font-size: 2rem;
+  margin-bottom: 6px;
+}
+
+.sousTitre {
+  color: var(--c-texte-doux);
+  font-size: 1.1rem;
+  margin-bottom: 28px;
+}
+
+.retour {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--c-texte-doux);
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.retour:hover {
+  color: var(--c-primaire);
+}
+
+/* --- Accueil --- */
+.accueil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 18px;
+  animation: pop 0.4s ease;
+}
+
+.accueilTitre {
+  font-size: 2.6rem;
+  color: var(--c-primaire-fonce);
+  margin: 0;
+}
+
+.accueilTexte {
+  color: var(--c-texte-doux);
+  font-size: 1.2rem;
+  max-width: 440px;
+  margin: 0 0 8px;
+}
+
+/* --- Grille de matières --- */
+.grilleMatieres {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.carteMatiere {
+  border-radius: var(--rayon);
+  padding: 28px;
+  color: #fff;
+  box-shadow: var(--ombre-forte);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 180px;
+  transition: transform 0.15s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.carteMatiere:hover {
+  transform: translateY(-4px);
+}
+
+.carteMatiereEmoji {
+  font-size: 3rem;
+}
+
+.carteMatiereNom {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.carteMatiereDesc {
+  opacity: 0.92;
+  font-weight: 500;
+}
+
+.badgeLecons {
+  margin-top: auto;
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* --- Liste de leçons --- */
+.listeLecons {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.carteLecon {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--c-fond-carte);
+  border-radius: var(--rayon);
+  padding: 18px 22px;
+  box-shadow: var(--ombre);
+  transition: transform 0.12s ease;
+}
+
+.carteLecon:hover {
+  transform: translateX(4px);
+}
+
+.leconEmoji {
+  font-size: 2rem;
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  background: #eef1ff;
+  border-radius: 16px;
+  flex: 0 0 auto;
+}
+
+.leconTexte {
+  flex: 1;
+}
+
+.leconTitre {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.leconDomaine {
+  color: var(--c-texte-doux);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.leconDroite {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.leconFleche {
+  font-size: 1.4rem;
+  color: var(--c-primaire);
+}
+
+/* --- Cours --- */
+.cours {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.enteteCours {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: var(--c-fond-carte);
+  border-radius: var(--rayon);
+  padding: 22px;
+  box-shadow: var(--ombre);
+}
+
+.blocCours {
+  background: var(--c-fond-carte);
+  border-radius: var(--rayon);
+  padding: 22px 24px;
+  box-shadow: var(--ombre);
+  border-left: 6px solid var(--c-primaire);
+}
+
+.blocCoursTitre {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+}
+
+.blocCoursTexte {
+  margin: 0;
+  line-height: 1.5;
+  font-size: 1.05rem;
+}
+
+.exemple {
+  margin-top: 12px;
+  background: #fff8e6;
+  border-radius: var(--rayon-s);
+  padding: 10px 14px;
+  font-weight: 700;
+  color: #a56b00;
+  display: inline-block;
+}
+
+.actionsCours {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+/* --- Bilan --- */
+.bilan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  animation: pop 0.4s ease;
+}
+
+.bilanCarte {
+  background: var(--c-fond-carte);
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre-forte);
+  padding: 32px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-width: 320px;
+}
+
+.bilanScore {
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.bilanXp {
+  background: #eef1ff;
+  color: var(--c-primaire-fonce);
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.bilanActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.recompense {
+  margin-top: 6px;
+  background: #fff8e6;
+  border: 2px dashed #ffd873;
+  border-radius: var(--rayon);
+  padding: 16px 20px;
+  color: #a56b00;
+  font-weight: 700;
+  max-width: 360px;
+}
+
+/* --- Profil --- */
+.profilStats {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 26px;
+}
+
+.statCarte {
+  background: var(--c-fond-carte);
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  padding: 20px 26px;
+  text-align: center;
+  flex: 1;
+  min-width: 140px;
+}
+
+.statValeur {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--c-primaire);
+}
+
+.statLabel {
+  color: var(--c-texte-doux);
+  font-weight: 600;
+}
+
+.lienReset {
+  margin-top: 30px;
+  background: none;
+  border: none;
+  color: var(--c-texte-doux);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.lienReset:hover {
+  color: var(--c-erreur);
+}

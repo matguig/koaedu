@@ -1,0 +1,76 @@
+:root {
+  /* Palette ludique et douce, pensée pour des enfants de 8-9 ans */
+  --c-fond: #f3f7ff;
+  --c-fond-carte: #ffffff;
+  --c-texte: #253858;
+  --c-texte-doux: #64769a;
+  --c-primaire: #5b6cff;
+  --c-primaire-fonce: #4453d6;
+  --c-maths: #ff8a3d;
+  --c-francais: #21b6a8;
+  --c-succes: #2fbf71;
+  --c-erreur: #ff5d6c;
+  --c-or: #ffce3d;
+  --ombre: 0 6px 18px rgba(37, 56, 88, 0.12);
+  --ombre-forte: 0 12px 30px rgba(37, 56, 88, 0.18);
+  --rayon: 20px;
+  --rayon-s: 12px;
+  font-family: 'Baloo 2', 'Trebuchet MS', 'Segoe UI', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: linear-gradient(160deg, #eef3ff 0%, #f8f0ff 100%);
+  background-attachment: fixed;
+  color: var(--c-texte);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 0.4em;
+  line-height: 1.15;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Utilitaires d'animation partagés */
+@keyframes flotte {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
