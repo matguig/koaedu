@@ -73,17 +73,14 @@ function ModeleZubi({ humeur }: { humeur: Humeur }) {
       const mesh = obj as THREE.Mesh
       if (!mesh.isMesh) return
       const geo = mesh.geometry
-      // Le white mesh n'a pas de normales → recalcul, sinon éclairage tout plat.
-      if (!geo.getAttribute('normal')) geo.computeVertexNormals()
+      const aNormales = Boolean(geo.getAttribute('normal'))
+      const aCouleurs = Boolean(geo.getAttribute('color'))
       const materiau = mesh.material as THREE.MeshStandardMaterial | undefined
       const aTexture = Boolean(materiau && materiau.map)
-      const aCouleurs = Boolean(geo.getAttribute('color'))
-      if (aTexture || aCouleurs) {
-        // Modèle coloré (texture ou couleurs par sommet) : on garde ses couleurs.
-        if (materiau) materiau.vertexColors = aCouleurs
-      } else {
-        mesh.material = matTurquoise // fallback : mesh nu → turquoise uni
-      }
+      if (!aNormales) geo.computeVertexNormals() // white mesh nu : normales absentes
+      if (aCouleurs && materiau) materiau.vertexColors = true
+      // On ne force le turquoise que sur un mesh réellement nu (aucun matériau utile).
+      if (!aTexture && !aCouleurs && !aNormales) mesh.material = matTurquoise
       mesh.castShadow = true
     })
     return clone
