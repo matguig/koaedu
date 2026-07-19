@@ -11,6 +11,7 @@ interface Props {
   humeur?: Humeur
   hauteur?: number
   interactif?: boolean
+  autoRotate?: boolean
 }
 
 /**
@@ -19,7 +20,12 @@ interface Props {
  * un matériau turquoise et on recalcule les normales. Dès qu'un .glb TEXTURÉ
  * sera déposé au même emplacement, ses couleurs seront conservées telles quelles.
  */
-export function Zubi3D({ humeur = 'neutre', hauteur = 320, interactif = true }: Props) {
+export function Zubi3D({
+  humeur = 'neutre',
+  hauteur = 320,
+  interactif = true,
+  autoRotate = true,
+}: Props) {
   return (
     <div style={{ width: '100%', height: hauteur }}>
       <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 0.4, 5], fov: 40 }}>
@@ -40,7 +46,7 @@ export function Zubi3D({ humeur = 'neutre', hauteur = 320, interactif = true }: 
           <OrbitControls
             enablePan={false}
             enableZoom={false}
-            autoRotate
+            autoRotate={autoRotate}
             autoRotateSpeed={1.4}
             minPolarAngle={Math.PI / 3}
             maxPolarAngle={Math.PI / 1.9}
@@ -66,11 +72,18 @@ function ModeleZubi({ humeur }: { humeur: Humeur }) {
     clone.traverse((obj) => {
       const mesh = obj as THREE.Mesh
       if (!mesh.isMesh) return
-      // Le white mesh n'a pas de normales → sinon éclairage tout plat/noir.
-      mesh.geometry.computeVertexNormals()
+      const geo = mesh.geometry
+      // Le white mesh n'a pas de normales → recalcul, sinon éclairage tout plat.
+      if (!geo.getAttribute('normal')) geo.computeVertexNormals()
       const materiau = mesh.material as THREE.MeshStandardMaterial | undefined
-      const estTexture = Boolean(materiau && materiau.map)
-      if (!estTexture) mesh.material = matTurquoise
+      const aTexture = Boolean(materiau && materiau.map)
+      const aCouleurs = Boolean(geo.getAttribute('color'))
+      if (aTexture || aCouleurs) {
+        // Modèle coloré (texture ou couleurs par sommet) : on garde ses couleurs.
+        if (materiau) materiau.vertexColors = aCouleurs
+      } else {
+        mesh.material = matTurquoise // fallback : mesh nu → turquoise uni
+      }
       mesh.castShadow = true
     })
     return clone

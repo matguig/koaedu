@@ -10,11 +10,13 @@ const Zubi3D = lazy(() =>
 
 export function Accueil() {
   const navigate = useNavigate()
+  // ?cal fige la rotation (calibrage visuel de la mascotte).
+  const cal = typeof window !== 'undefined' && window.location.search.includes('cal')
   return (
     <div className={s.accueil}>
       <div className={s.heroZubi}>
         <Suspense fallback={<div style={{ height: 340 }} />}>
-          <Zubi3D humeur="content" hauteur={340} />
+          <Zubi3D humeur="content" hauteur={340} autoRotate={!cal} />
         </Suspense>
       </div>
       <p className={s.bulleAccueil}>Salut, moi c’est Zubi ! 👋</p>

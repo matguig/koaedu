@@ -27,11 +27,29 @@ React 19 + TypeScript · Vite · React Router · Zustand (état + persistance
 ## Mascotte 3D
 
 Zubi est affiché en 3D sur l'accueil (`src/components/Zubi3D.tsx`), modèle chargé
-depuis `public/models/zubi.glb`. Le modèle actuel est un « white mesh »
-(géométrie seule) auquel on applique un matériau turquoise ; le composant détecte
-automatiquement une texture, donc **déposer un `.glb` texturé au même emplacement
-affichera ses couleurs sans changer le code**. Le chargement de Three.js est
-`lazy` (chunk séparé) pour ne pas alourdir les écrans sans 3D.
+depuis `public/models/zubi.glb`. Le chargement de Three.js est `lazy` (chunk
+séparé) pour ne pas alourdir les écrans sans 3D.
+
+### Coloration du modèle
+
+Le modèle généré est un « white mesh » (géométrie seule, sans texture). Ses
+couleurs sont recréées par **projection de la vue de face** sur les sommets
+avant (yeux, joues, bouche, ventre), via :
+
+```bash
+npm run bake:mascotte
+```
+
+- Sources (hors build) : `assets/source/zubi-white.glb` (mesh nu) et
+  `assets/references/*.png` (rendus de référence).
+- Sortie : `public/models/zubi.glb` (couleurs par sommet + normales).
+- Réglages d'alignement/saturation en variables d'env (voir l'en-tête du script
+  `scripts/bake-zubi-colors.mjs`).
+
+Le composant détecte automatiquement des couleurs par sommet **ou** une texture,
+donc déposer plus tard un `.glb` texturé au même emplacement fonctionnera sans
+changer le code. Limite de la projection : l'avant/3-4 est fidèle, l'arrière
+reste turquoise uni.
 
 ## Démarrage
 
@@ -73,6 +91,8 @@ Types d'exercices disponibles : `qcm`, `saisie`, `vraiFaux`, `texteATrous`.
 ### Bascule 3D (en cours)
 
 - [x] Socle React Three Fiber : Zubi 3D animé sur l'accueil, chargement `.glb`.
-- [ ] Modèle **texturé** (couleurs du visage) — le mesh gratuit actuel est nu.
+- [x] Couleurs du visage recréées par projection (`npm run bake:mascotte`).
+- [ ] Vraie texture PBR (dépliage UV / export texturé) pour un rendu net.
+- [ ] Alléger le maillage (~327 k sommets, 17 Mo → décimation).
 - [ ] Modèle **riggé** + animations (saut, réflexion, célébration).
 - [ ] Généraliser la 3D sur les autres écrans (retours d'exercices, bilan).
